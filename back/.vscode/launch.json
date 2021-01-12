@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CadwarboxeApplication<cadwarboxe>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.boxe.cadwarboxe.CadwarboxeApplication",
+            "projectName": "cadwarboxe",
+            "args": ""
+        }
+    ]
+}
