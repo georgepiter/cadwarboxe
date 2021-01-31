@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface HistoricoPgtService {
     
-    public HistoricoPgt buscarHistoricoPgtPorId(Long ID);
+    public HistoricoPgt buscarHistoricoPgtPorId(Long id);
     public List<HistoricoPgt> findAll();
 
     

@@ -37,9 +37,9 @@ public class ControllerContratosResources {
     // @Autowired
     // private ContratoRepository contratoRepository;
 
-    @GetMapping("/{ID}")
-    public ContratoDto contratoDto(@PathVariable Long ID) {
-        Contrato contrato = this.contratoService.buscarContratoPorId(ID);
+    @GetMapping("/{id}")
+    public ContratoDto contratoDto(@PathVariable Long id) {
+        Contrato contrato = this.contratoService.buscarContratoPorId(id);
 
         return new ContratoDto(contrato);
 
@@ -54,9 +54,9 @@ public class ControllerContratosResources {
     }
 
     // Não funciona pq precisa deletar o id plano antes
-    @DeleteMapping("/{ID}")
-    public ResponseEntity<?> deleteContrato(@PathVariable Long ID) {
-        contratoService.deleteContratoPorId(ID);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteContrato(@PathVariable Long id) {
+        contratoService.deleteContratoPorId(id);
 
         return ResponseEntity.ok().build();
 

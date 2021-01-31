@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface PlanoService {
 
-	public Plano buscarPlanoPorId(Long ID);
-	public void deletarPlanoPorId(Long ID);
+	public Plano buscarPlanoPorId(Long id);
+	public void deletarPlanoPorId(Long id);
     public Plano novoPlano(Plano plano);
 
 

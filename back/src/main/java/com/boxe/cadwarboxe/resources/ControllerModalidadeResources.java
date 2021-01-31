@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 @Component
 @RequestMapping(value = "/modadlidades")
+
 public class ControllerModalidadeResources {
 
     @Autowired
@@ -37,13 +39,7 @@ public class ControllerModalidadeResources {
 
     // @Autowired
     // private ModalidadesRepository modalidadesRepository;
-
-    @GetMapping("/{ID}")
-    public ModalidadeDto modalidadeDto(@PathVariable Long ID) {
-        Modalidade modalidade = this.modalidadeService.buscarModalidadePorId(ID);
-
-        return new ModalidadeDto(modalidade);
-    }    
+      
            
     @PostMapping
     public ResponseEntity<Modalidade> novaModalidade(@RequestBody Modalidade modalidade) {
@@ -51,12 +47,27 @@ public class ControllerModalidadeResources {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(modalidade.getIdModalidade()).toUri();
         return ResponseEntity.created(uri).body(modalidade);
     }
-           
+
+    @GetMapping("/{id}")
+    public ModalidadeDto modalidadeDto(@PathVariable Long id) {
+        Modalidade modalidade = this.modalidadeService.buscarModalidadePorId(id);
+
+        return new ModalidadeDto(modalidade);
+    } 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarModalidadePorId(@RequestBody Modalidade modalidade, @PathVariable Long id) {
+        modalidade.setIdModalidade(id);
+        modalidade = modalidadeService.atualizarModalidadePorId(modalidade);
+
+        return ResponseEntity.noContent().build();
+
+    }     
   
-//Primeiro delete id modalidade para depois ID planos
-    @DeleteMapping("/{ID}")
-    public ResponseEntity<?> deleteModalidade(@PathVariable Long ID) {
-        modalidadeService.deletarModalidadePorId(ID);
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteModalidade(@PathVariable Long id) {
+        modalidadeService.deletarModalidadePorId(id);
 
         return ResponseEntity.ok().build();
     }

@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface PlanosRepository extends JpaRepository<Plano, Long> {
 
 
-    public Optional<Plano> findByIdPlano(Long ID);
+    public Optional<Plano> findByIdPlano(Long id);
 }

@@ -30,9 +30,9 @@ public class ControllerHistoricoPgtResources {
     @PersistenceContext
     private EntityManager manager;
 
-    @GetMapping("/{ID}")
-    public HistoricoPgtDto historicoDto(@PathVariable Long ID) {
-        HistoricoPgt historicoPgt = this.historicoPgtService.buscarHistoricoPgtPorId(ID);
+    @GetMapping("/{id}")
+    public HistoricoPgtDto historicoDto(@PathVariable Long id) {
+        HistoricoPgt historicoPgt = this.historicoPgtService.buscarHistoricoPgtPorId(id);
 
         return new HistoricoPgtDto(historicoPgt);
 

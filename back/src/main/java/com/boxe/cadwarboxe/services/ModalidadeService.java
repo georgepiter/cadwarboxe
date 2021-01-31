@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ModalidadeService {
 
-    public Modalidade buscarModalidadePorId(Long ID);
-
-    public void deletarModalidadePorId(Long ID);
-
+    public Modalidade buscarModalidadePorId(Long id);
+    public void deletarModalidadePorId(Long id);
     public Modalidade novaModalidade(Modalidade modalidade);
+    public Modalidade atualizarModalidadePorId(Modalidade modalidade);
+
        
 
 }

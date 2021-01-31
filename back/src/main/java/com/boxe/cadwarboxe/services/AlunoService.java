@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AlunoService {
 
-	public Aluno buscarAlunoPorId(Long ID);
-	public void deleteAlunoPorID(Long ID);
+	public Aluno buscarAlunoPorId(Long id);
+	public void deleteAlunoPorId(Long id);
 	public List<Aluno> findAll();
 	public Aluno novoAluno(Aluno aluno);
-	public Aluno atualizarAlunoPorID(Aluno aluno);
+	public Aluno atualizarAlunoPorId(Aluno aluno);
 
 }
 

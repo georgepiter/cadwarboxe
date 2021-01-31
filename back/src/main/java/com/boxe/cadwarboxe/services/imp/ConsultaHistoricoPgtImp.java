@@ -16,9 +16,9 @@ public class ConsultaHistoricoPgtImp implements HistoricoPgtService {
     private HistoricoPgtRepository historicoPgtRepository;
 
     @Override
-    public HistoricoPgt buscarHistoricoPgtPorId(Long ID) {
+    public HistoricoPgt buscarHistoricoPgtPorId(Long id) {
 
-        return historicoPgtRepository.findById(ID).orElseThrow(() -> new RuntimeException("Historico não localizado"));
+        return historicoPgtRepository.findById(id).orElseThrow(() -> new RuntimeException("Historico não localizado"));
     }
 
     @Override

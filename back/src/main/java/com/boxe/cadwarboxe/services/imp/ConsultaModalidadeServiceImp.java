@@ -1,9 +1,12 @@
 package com.boxe.cadwarboxe.services.imp;
 
+import java.util.Optional;
+
 import com.boxe.cadwarboxe.domain.Modalidade;
 import com.boxe.cadwarboxe.repositories.ModalidadesRepository;
 import com.boxe.cadwarboxe.services.ModalidadeService;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,22 +17,42 @@ public class ConsultaModalidadeServiceImp implements ModalidadeService {
     private ModalidadesRepository modalidadesRepository;
 
     @Override
-    public Modalidade buscarModalidadePorId(Long ID) {
-        
-        return modalidadesRepository.findById(ID).orElseThrow(() -> new RuntimeException("Modalidade não encontrada"));
-    }
-
-    @Override
-    public void deletarModalidadePorId(Long ID) {
-
-    }
-
-    @Override
     public Modalidade novaModalidade(Modalidade modalidade) {
-        return modalidadesRepository.save(modalidade);
-       
+        modalidade.setIdModalidade(null);
+        return modalidadesRepository.save(modalidade);       
     
     }
+
+    @Override
+    public Modalidade buscarModalidadePorId(Long id) {
+
+        Optional<Modalidade> modalidade = modalidadesRepository.findById(id);
+        if (modalidade == null) {
+            try {
+                throw new ObjectNotFoundException(
+                        "Objeto não encontrado! Id: " + id + ", Tipo: " + Modalidade.class.getName(), null);
+            } catch (ObjectNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return modalidadesRepository.findById(id).orElseThrow(() -> new RuntimeException("Modalidade não encontrada"));
+    }
+
+    @Override
+    public Modalidade atualizarModalidadePorId(Modalidade modalidade) {
+        buscarModalidadePorId(modalidade.getIdModalidade());
+        return modalidadesRepository.save(modalidade);
+    }
+
+    @Override
+    public void deletarModalidadePorId(Long id) {
+
+    }
+
+  
+
+   
 
   
    

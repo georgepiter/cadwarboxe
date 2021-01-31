@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ModalidadesRepository extends JpaRepository<Modalidade, Long> {
 
-    public Optional<Modalidade> findById(Long ID);
+    public Optional<Modalidade> findById(Long id);
 
 }
 

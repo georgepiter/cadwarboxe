@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ContratoService {
 
-    public Contrato buscarContratoPorId(Long ID);
-    public void deleteContratoPorId(Long ID);
+    public Contrato buscarContratoPorId(Long id);
+    public void deleteContratoPorId(Long id);
     public Contrato novoContrato(Contrato contrato);
 }

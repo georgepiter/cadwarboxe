@@ -14,13 +14,13 @@ public class ConsultaPlanoServiceImp implements PlanoService {
     private PlanosRepository planosReposirory;
 
     @Override
-    public Plano buscarPlanoPorId(Long ID) {
+    public Plano buscarPlanoPorId(Long id) {
 
-        return planosReposirory.findById(ID).orElseThrow(() -> new RuntimeException("Plano não encontrado"));
+        return planosReposirory.findById(id).orElseThrow(() -> new RuntimeException("Plano não encontrado"));
     }
 
     @Override
-    public void deletarPlanoPorId(Long ID) {
+    public void deletarPlanoPorId(Long id) {
         
 
     }

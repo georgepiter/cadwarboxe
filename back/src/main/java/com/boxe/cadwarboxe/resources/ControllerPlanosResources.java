@@ -34,9 +34,9 @@ public class ControllerPlanosResources {
     // @Autowired
     // private PlanosRepository planosRepository;
 
-    @GetMapping("/{ID}")
-    public PlanoDto planosDto(@PathVariable Long ID) {
-        Plano plano = this.planoService.buscarPlanoPorId(ID);
+    @GetMapping("/{id}")
+    public PlanoDto planosDto(@PathVariable Long id) {
+        Plano plano = this.planoService.buscarPlanoPorId(id);
 
         return new PlanoDto(plano);
     }
@@ -49,10 +49,9 @@ public class ControllerPlanosResources {
     }
 
     
-//Primeiro deletar ID modalidade para depois ID planos
-    @DeleteMapping("/{ID}")
-    public ResponseEntity<?> deletePlano(@PathVariable Long ID) {
-        planoService.deletarPlanoPorId(ID);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePlano(@PathVariable Long id) {
+        planoService.deletarPlanoPorId(id);
 
 
         return ResponseEntity.ok().build();
