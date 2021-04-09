@@ -17,6 +17,7 @@ public class ConsultaContratoServiceImp implements ContratoService {
 
     @Override
     public Contrato novoContrato(Contrato contrato) {
+        
         return contratoRepository.save(contrato);
     }
 
@@ -37,6 +38,8 @@ public class ConsultaContratoServiceImp implements ContratoService {
 
         }
     }
+
+    
 
    
     

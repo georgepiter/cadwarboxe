@@ -34,17 +34,6 @@ public class ControllerContratosResources {
     @PersistenceContext
     private EntityManager manager;
 
-    // @Autowired
-    // private ContratoRepository contratoRepository;
-
-    @GetMapping("/{id}")
-    public ContratoDto contratoDto(@PathVariable Long id) {
-        Contrato contrato = this.contratoService.buscarContratoPorId(id);
-
-        return new ContratoDto(contrato);
-
-    }
-
     @PostMapping
     public ResponseEntity<Contrato> novoContrato(@RequestBody Contrato contrato) {
         contrato = contratoService.novoContrato(contrato);
@@ -53,7 +42,14 @@ public class ControllerContratosResources {
         return ResponseEntity.created(uri).body(contrato);
     }
 
-    // Não funciona pq precisa deletar o id plano antes
+    @GetMapping("/{id}")
+    public ContratoDto contratoDto(@PathVariable Long id) {
+        Contrato contrato = this.contratoService.buscarContratoPorId(id);
+
+        return new ContratoDto(contrato);
+
+    }   
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteContrato(@PathVariable Long id) {
         contratoService.deleteContratoPorId(id);

@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Immutable;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -22,7 +20,6 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Data
 @Entity
-@Immutable
 @Table(name = "modalidades")
 
 public class Modalidade implements Serializable {

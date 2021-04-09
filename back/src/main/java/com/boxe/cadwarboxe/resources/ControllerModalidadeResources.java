@@ -62,8 +62,7 @@ public class ControllerModalidadeResources {
 
         return ResponseEntity.noContent().build();
 
-    }     
-  
+    }  
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteModalidade(@PathVariable Long id) {

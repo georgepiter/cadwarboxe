@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.boxe.cadwarboxe.domain.Aluno;
+import com.boxe.cadwarboxe.dto.AlunoDto;
 import com.boxe.cadwarboxe.repositories.AlunosRepository;
 import com.boxe.cadwarboxe.services.AlunoService;
 
@@ -22,8 +23,7 @@ public class ConsultaAlunoServiceImpl implements AlunoService {
     public Aluno novoAluno(Aluno aluno) {
         aluno.setIdAlunos(null);
         return alunosRepository.save(aluno);
-
-    }
+    } 
 
     @Override
     public List<Aluno> findAll() {
@@ -58,5 +58,11 @@ public class ConsultaAlunoServiceImpl implements AlunoService {
         alunosRepository.delete(alunosRepository.findById(id).get());
 
     }
+    
+    // public Aluno novoAlunoDto(AlunoDto alunoDto) {
+    //     return new Aluno(null, alunoDto.getIdAlunos(), alunoDto.getNome(), alunoDto.getIdade(),
+    //                      alunoDto.getBairro(), null, alunoDto.getCelular(), alunoDto.getCep(), alunoDto.getCidade(), null, null,
+    //             null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    // }
 
 }

@@ -6,11 +6,12 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 
 import com.boxe.cadwarboxe.domain.Aluno;
 import com.boxe.cadwarboxe.dto.AlunoDto;
-import com.boxe.cadwarboxe.repositories.AlunosRepository;
 import com.boxe.cadwarboxe.services.AlunoService;
+import com.boxe.cadwarboxe.services.imp.ConsultaAlunoServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,13 +34,24 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class ControllerAlunoResources {
 
     @Autowired
+    private ConsultaAlunoServiceImpl consultaAlunoServiceImpl;
+
+    @Autowired
     private AlunoService alunoService;
 
     @PersistenceContext
     private EntityManager manager;
 
-    @Autowired
-    private AlunosRepository alunosRepository;
+    @PostMapping
+    public ResponseEntity<Aluno> novoAluno(@Valid @RequestBody Aluno aluno) {
+        aluno = consultaAlunoServiceImpl.novoAluno(aluno);
+        aluno.setIdAlunos(null);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(aluno.getIdAlunos())
+                .toUri();
+        return ResponseEntity.created(uri).build();
+    }
+
+    // preencher o DTO para / valition funcionando pelo DTO
 
     @GetMapping("/{id}")
     public AlunoDto alunosDtos(@PathVariable Long id) {
@@ -49,28 +61,16 @@ public class ControllerAlunoResources {
     }
 
     @GetMapping("/")
-    public List<AlunoDto> listAlunos() { 
-        return alunoService.findAll().stream().map(e -> AlunoDto.builder()
-                                                                .nome(e.getNome()).build())
-                                                                .collect(Collectors.toList());
-    }
-
-    @PostMapping
-    public ResponseEntity<Aluno> novoAluno(@RequestBody Aluno aluno) {
-        aluno = alunoService.novoAluno(aluno);
-        aluno.setIdAlunos(null);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                                             .path("/{id}")
-                                             .buildAndExpand(aluno.getIdAlunos())
-                                             .toUri();
-        return ResponseEntity.created(uri).build();
+    public List<AlunoDto> listAlunos() {
+        return alunoService.findAll().stream().map(e -> AlunoDto.builder().nome(e.getNome()).build())
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Aluno> atualizarAluno(@RequestBody Aluno aluno, @PathVariable Long id) {
-            aluno.setIdAlunos(id);
-            aluno = alunoService.atualizarAlunoPorId(aluno);
-            
+        aluno.setIdAlunos(id);
+        aluno = alunoService.atualizarAlunoPorId(aluno);
+
         return ResponseEntity.noContent().build();
 
     }

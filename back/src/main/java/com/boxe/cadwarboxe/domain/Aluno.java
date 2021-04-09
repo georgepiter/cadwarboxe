@@ -12,8 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Immutable;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +26,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @Entity
-@Immutable
 @Table(name = "alunos")
 
 public class Aluno implements Serializable {
@@ -36,6 +34,7 @@ public class Aluno implements Serializable {
 
 	// Mapemanto de classes
 
+	@Transient
 	@OneToMany(mappedBy = "alunos")
 	private List<Contrato> contratos = new ArrayList<>();
 
@@ -116,6 +115,7 @@ public class Aluno implements Serializable {
 	@Column(name = "foto")
 	private String foto;
 
+	@Transient
 	public List<Contrato> getContratos() {
 		return contratos;
 	}
@@ -124,6 +124,5 @@ public class Aluno implements Serializable {
 		this.contratos = contratos;
 	}
 
-	public void setId(Object object) {
-	}
+	
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.Immutable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +28,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @Entity
-@Immutable
 @Table(name = "contratos")
 
 public class Contrato implements Serializable {

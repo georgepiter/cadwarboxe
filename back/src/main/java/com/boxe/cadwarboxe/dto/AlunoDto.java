@@ -6,8 +6,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotEmpty;
 import com.boxe.cadwarboxe.domain.Aluno;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +31,9 @@ public class AlunoDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long idAlunos;
+
+    @NotEmpty(message = "Nome obrigatório")
+    @Length(min=5, max=80, message = "O tamanaho deve ser entre 5 e 80 caracteres")
     private String nome;
     private Integer idade;
     private String rg;

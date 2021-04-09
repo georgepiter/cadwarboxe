@@ -34,13 +34,6 @@ public class ControllerPlanosResources {
     // @Autowired
     // private PlanosRepository planosRepository;
 
-    @GetMapping("/{id}")
-    public PlanoDto planosDto(@PathVariable Long id) {
-        Plano plano = this.planoService.buscarPlanoPorId(id);
-
-        return new PlanoDto(plano);
-    }
-
     @PostMapping
     public ResponseEntity<Plano> novoPlano(@RequestBody Plano plano) {
         plano = planoService.novoPlano(plano);
@@ -48,6 +41,12 @@ public class ControllerPlanosResources {
 
     }
 
+    @GetMapping("/{id}")
+    public PlanoDto planosDto(@PathVariable Long id) {
+        Plano plano = this.planoService.buscarPlanoPorId(id);
+
+        return new PlanoDto(plano);
+    }   
     
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePlano(@PathVariable Long id) {
