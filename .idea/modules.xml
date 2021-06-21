@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/back/cadwarboxe.iml" filepath="$PROJECT_DIR$/back/cadwarboxe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cadwarboxe.iml" filepath="$PROJECT_DIR$/cadwarboxe.iml" />
     </modules>
   </component>
 </project>
